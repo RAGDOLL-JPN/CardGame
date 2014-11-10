@@ -1,16 +1,20 @@
 #include "HelloWorldScene.h"
 #include <random>
 
-#define CARD_NUM 13 //1種類あたりのカード枚数
-#define CARD_TYPE_NUM 4 //カードの種類
+#define CARD_NUM 13             // 1種類あたりのカード枚数
+#define CARD_TYPE_NUM 4         // カードの種類
 
-#define CARD_1_POS_X 200 //1番のカード位置(x)
-#define CARD_1_POS_Y 320 //1番のカード位置(y)
-#define CARD_DISTANCE_X 140 //カード間の距離(x方向)
-#define CARD_DISTANCE_Y 200 //カード間の距離(y方向)
+#define CARD_1_POS_X 200        // 1番のカード位置(x)
+#define CARD_1_POS_Y 320        // 1番のカード位置(y)
+#define CARD_DISTANCE_X 140     // カード間の距離(x方向)
+#define CARD_DISTANCE_Y 200     // カード間の距離(y方向)
 
-#define ZORDER_SHOW_CARD 1      //表示しているカードのZオーダー
+#define ZORDER_SHOW_CARD 1      // 表示しているカードのZオーダー
 #define ZORDER_MOVING_CARD 2    // 移動しているカードのZオーダー
+
+#define TAG_TRUSE_CARD 11       // 捨てられたカードのタグ
+
+#define MOVING_TIME 0.3         // カードのアニメーションの時間
 
 USING_NS_CC;
 
@@ -29,15 +33,9 @@ void CardSprite::onEnter()
     Sprite::onEnter();
     
     //画像の表示
-    setTexture(getFileName(_card.type));
+    setTexture("card_back.png");
     
-    //マークと数字の表示
-    showNumber();
-    
-    //カードの位置とタグを指定
-    float posX = CARD_1_POS_X + CARD_DISTANCE_X * _posIndex.x;
-    float posY = CARD_1_POS_Y + CARD_DISTANCE_Y * _posIndex.y;
-    setPosition(posX, posY);
+    // カードのタグを指定
     setTag(_posIndex.x + _posIndex.y * 5 + 1);
 }
 
@@ -88,6 +86,63 @@ void CardSprite::showNumber()
     number->setPosition(Point(getContentSize() / 2));
     number->setTextColor(textColor);
     addChild(number);
+}
+
+void CardSprite::moveBackToInitPos(){
+    
+    // 移動アニメーションの作成
+    float posX = CARD_1_POS_X + CARD_DISTANCE_X * _posIndex.x;
+    float posY = CARD_1_POS_Y + CARD_DISTANCE_Y * _posIndex.y;
+    auto move = MoveTo::create(MOVING_TIME, Point(posX, posY));
+    
+    // アニメーションの実行
+    runAction(move);
+}
+
+void CardSprite::moveToTrash(){
+    
+    // 移動アニメーションの作成
+    float posX = CARD_1_POS_X + CARD_DISTANCE_X * 4;
+    float posY = CARD_1_POS_Y + CARD_DISTANCE_Y;
+    auto move = MoveTo::create(MOVING_TIME, Point(posX, posY));
+    
+    // アニメーション後に呼び出す関数の作成
+    auto func = CallFunc::create([&](){
+        this->setTag(TAG_TRUSE_CARD);
+    });
+    
+    // アクションの直列結合
+    auto seq = Sequence::create(move, func, nullptr);
+    
+    // アニメーションの実行
+    runAction(seq);
+}
+
+void CardSprite::moveToInitPos(){
+    
+    // 移動アニメーションの作成
+    float posX = CARD_1_POS_X + CARD_DISTANCE_X * _posIndex.x;
+    float posY = CARD_1_POS_Y + CARD_DISTANCE_Y * _posIndex.y;
+    auto move = MoveTo::create(MOVING_TIME, Point(posX, posY));
+    
+    // カードの回転アニメーションの作成
+    auto scale1 = ScaleTo::create(MOVING_TIME / 2, 0, 1);
+    auto func1 = CallFunc::create([&](){
+        // 画面の表示
+        setTexture(getFileName(_card.type));
+        
+        // 数字の表示
+        showNumber();
+    });
+    
+    auto scale2 = ScaleTo::create(MOVING_TIME / 2, 1, 1);
+    auto seq1 = Sequence::create(scale1, func1, scale2, nullptr);
+    
+    // アクション並列結合
+    auto spawn = Spawn::create(move, seq1, nullptr);
+    
+    // アニメーションの実行
+    runAction(spawn);
 }
 
 Scene* HelloWorld::createScene()
@@ -176,6 +231,7 @@ void HelloWorld::createCard(PosIndex posIndex)
     auto card = CardSprite::create();
     card->setCard(getCard());
     card->setPosIndex(posIndex);
+    card->moveToInitPos();
     addChild(card, ZORDER_SHOW_CARD);
 }
 
@@ -220,7 +276,7 @@ CardSprite* HelloWorld::getTouchCard(Touch *touch){
     for (int tag = 1; tag <= 10; tag++) {
         // 表示されているカードを取得する
         auto card = (CardSprite*)getChildByTag(tag);
-        if (card && card->getBoundingBox().containsPoint(touch->getLocation())) {
+        if (card && card != _firstCard && card->getBoundingBox().containsPoint(touch->getLocation())) {
             // タップされたカードの場合は、そのカードを返す
             return card;
         }
@@ -252,6 +308,49 @@ void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event){
 }
 
 void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event){
+    
+    bool success = false;
+    
+    // タップしたカードの取得
+    auto _secondSprite = getTouchCard(touch);
+    if (_secondSprite) {
+        // 2枚選択
+        if (_firstCard->getCard().number + _secondSprite->getCard().number == 13) {
+            // 2枚のカードを足して13になる
+            success = true;
+        }
+    } else {
+        // 1枚選択
+        
+        if (_firstCard->getCard().number == 13) {
+            // 1枚のカードで13になる
+            success = true;
+        }
+    }
+    
+    if (success) {
+        // 新しいカードを配置する
+        if ((int)_cards.size() > 0) {
+            createCard(_firstCard->getPosIndex());
+        }
+        
+        // カードを捨てる
+        _firstCard->moveToTrash();
+        
+        if (_secondSprite) {
+            // もう1枚の新しいカードを配置する
+            if ((int)_cards.size() > 0) {
+                createCard(_secondSprite->getPosIndex());
+            }
+            
+            // カードを捨てる
+            _secondSprite->moveToTrash();
+        }
+    } else {
+        // カードを元の位置に戻す
+        _firstCard->moveBackToInitPos();
+        _firstCard->setLocalZOrder(ZORDER_SHOW_CARD);
+    }
     
     // タップしているカードの指定を外す
     _firstCard = nullptr;
