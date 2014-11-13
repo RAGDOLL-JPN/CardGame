@@ -51,6 +51,7 @@ class HelloWorld : public cocos2d::Layer
 protected:
     std::vector<Card> _cards;                           // カード情報
     CardSprite* _firstCard;                             // 最初にタップされたカード
+    float _timer;                                       // 経過時間
     
     void initCards();                                   // カードを初期化する
     Card getCard();                                     // カードを取得する

@@ -316,6 +316,10 @@ void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event){
     _firstCard->setPosition(_firstCard->getPosition() + touch->getDelta());
 }
 
+
+
+
+
 void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event){
     
     bool success = false;
@@ -323,23 +327,31 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event){
     // タップしたカードの取得
     auto _secondSprite = getTouchCard(touch);
     if (_secondSprite) {
+        
         // 2枚選択
+        
         if (_firstCard->getCard().number + _secondSprite->getCard().number == 13) {
+            
             // 2枚のカードを足して13になる
             success = true;
         }
-    } else {
+    }else{
+        
+        
         // 1枚選択
         
         if (_firstCard->getCard().number == 13) {
+           
             // 1枚のカードで13になる
             success = true;
         }
     }
     
     if (success) {
+        
         // 新しいカードを配置する
         if ((int)_cards.size() > 0) {
+            
             createCard(_firstCard->getPosIndex());
         }
         
@@ -347,16 +359,25 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event){
         _firstCard->moveToTrash();
         
         if (_secondSprite) {
-            // もう1枚の新しいカードを配置する
-            if ((int)_cards.size() <= 0) {
-                // カードの山を削除する
-                removeChildByTag(TAG_BACK_CARD);
+            
+            // もう１枚の新しいカードを配置する
+            if ((int)_cards.size() > 0) {
+                
+                createCard(_secondSprite->getPosIndex());
             }
             
             // カードを捨てる
             _secondSprite->moveToTrash();
         }
-    } else {
+        
+        if ((int)_cards.size() <= 0) {
+            
+            // カードの山を削除する
+            removeChildByTag(TAG_BACK_CARD);
+        }
+    }else{
+        
+        
         // カードを元の位置に戻す
         _firstCard->moveBackToInitPos();
         _firstCard->setLocalZOrder(ZORDER_SHOW_CARD);
