@@ -2,6 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include "extensions/cocos-ext.h"
 
 //カードの種類
 enum CardType
@@ -29,15 +30,15 @@ struct PosIndex
 class CardSprite : public cocos2d::Sprite
 {
 protected:
-    std::string getFileName(CardType cardType);     //表画像ファイル名取得
-    void showNumber();                              //カードのマークと数字を表示
+    std::string getFileName(CardType cardType);     // 表画像ファイル名取得
+    void showNumber();                              // カードのマークと数字を表示
     
 public:
-    virtual bool init();                            //初期化処理
-    void onEnter() override;                        //表示前処理
-    CREATE_FUNC(CardSprite);                        //create関数作成マクロ
+    virtual bool init();                            // 初期化処理
+    void onEnter() override;                        // 表示前処理
+    CREATE_FUNC(CardSprite);                        // create関数作成マクロ
     
-    CC_SYNTHESIZE(Card, _card, Card);               //カード情報
+    CC_SYNTHESIZE(Card, _card, Card);               // カード情報
     CC_SYNTHESIZE(PosIndex, _posIndex, PosIndex);   // 表示位置
     
     void moveBackToInitPos();                       // 元の位置に移動する
@@ -48,15 +49,20 @@ public:
 class HelloWorld : public cocos2d::Layer
 {
 protected:
-    std::vector<Card> _cards;                          //カード情報
-    CardSprite* _firstCard;                            // 最初にタップされたカード
+    std::vector<Card> _cards;                           // カード情報
+    CardSprite* _firstCard;                             // 最初にタップされたカード
     
-    void initCards();                                  //カードを初期化する
-    Card getCard();                                    //カードを取得する
-    void createCard(PosIndex posIndex);                //カードを作成する
-    void showInitCards();                              //ゲーム開始時にカードを10枚表示する
-    void initGame();                                   //ゲームを初期化する
-    CardSprite* getTouchCard(cocos2d::Touch *touch);   // タップされたカード取得
+    void initCards();                                   // カードを初期化する
+    Card getCard();                                     // カードを取得する
+    void createCard(PosIndex posIndex);                 // カードを作成する
+    void showInitCards();                               // ゲーム開始時にカードを10枚表示する
+    void initGame();                                    // ゲームを初期化する
+    CardSprite* getTouchCard(cocos2d::Touch *touch);    // タップされたカード取得
+    void showButton();                                  // ボタンを表示する
+    void initTrash();                                   // ゴミカードを初期化する
+    void onTapButton(cocos2d::Ref* sender,
+                     cocos2d::extension::Control::EventType controlEvent);    // ボタンがタップされたときに呼ばれる
+    void showBackCards();                               // カードの山を表示する
     
 public:
     //HelloWorldクラスのシーンを作成する

@@ -22,6 +22,7 @@ obj/local/armeabi/objs-debug/cocos2dcpp_shared/__/__/Classes/HelloWorldScene.o: 
  /Applications/cocos2dx/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/stdint.h \
  /Applications/cocos2dx/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/sys/_types.h \
  /Applications/cocos2dx/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/machine/_types.h \
+ /Applications/cocos2dx/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/sys/_wchar_limits.h \
  /Applications/cocos2dx/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/linux/posix_types.h \
  /Applications/cocos2dx/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/linux/stddef.h \
  /Applications/cocos2dx/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/linux/compiler.h \
@@ -310,7 +311,37 @@ obj/local/armeabi/objs-debug/cocos2dcpp_shared/__/__/Classes/HelloWorldScene.o: 
  /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/cocos/./deprecated/CCBool.h \
  /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/cocos/./deprecated/CCString.h \
  /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/cocos/./deprecated/CCNotificationCenter.h \
- /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/cocos/./deprecated/CCDeprecated.h
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/cocos/./deprecated/CCDeprecated.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/cocos-ext.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/ExtensionMacros.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlExtensions.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCScale9Sprite.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/../../ExtensionMacros.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControl.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlUtils.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlButton.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCInvocation.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlColourPicker.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlHuePicker.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlSaturationBrightnessPicker.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlPotentiometer.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/cocos/./2d/CCProgressTimer.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlSlider.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlStepper.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlSwitch.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCScrollView/CCScrollView.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/cocos/./base/CCEventListenerTouch.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/cocos/./2d/CCActionTween.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/ExtensionMacros.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCScrollView/CCTableView.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCScrollView/CCScrollView.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCScrollView/CCTableViewCell.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCEditBox/CCEditBox.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCEditBox/../CCControlExtension/CCControlExtensions.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/physics-nodes/CCPhysicsDebugNode.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/cocos/./2d/CCDrawNode.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/physics-nodes/CCPhysicsSprite.h \
+ /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/assets-manager/AssetsManager.h
 
 jni/../../Classes/HelloWorldScene.h:
 
@@ -355,6 +386,8 @@ jni/../../Classes/HelloWorldScene.h:
 /Applications/cocos2dx/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/sys/_types.h:
 
 /Applications/cocos2dx/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/machine/_types.h:
+
+/Applications/cocos2dx/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/sys/_wchar_limits.h:
 
 /Applications/cocos2dx/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/linux/posix_types.h:
 
@@ -933,3 +966,63 @@ jni/../../Classes/HelloWorldScene.h:
 /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/cocos/./deprecated/CCNotificationCenter.h:
 
 /Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/cocos/./deprecated/CCDeprecated.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/cocos-ext.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/ExtensionMacros.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlExtensions.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCScale9Sprite.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/../../ExtensionMacros.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControl.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlUtils.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlButton.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCInvocation.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlColourPicker.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlHuePicker.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlSaturationBrightnessPicker.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlPotentiometer.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/cocos/./2d/CCProgressTimer.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlSlider.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlStepper.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCControlExtension/CCControlSwitch.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCScrollView/CCScrollView.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/cocos/./base/CCEventListenerTouch.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/cocos/./2d/CCActionTween.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/ExtensionMacros.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCScrollView/CCTableView.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCScrollView/CCScrollView.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCScrollView/CCTableViewCell.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCEditBox/CCEditBox.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/GUI/CCEditBox/../CCControlExtension/CCControlExtensions.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/physics-nodes/CCPhysicsDebugNode.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/cocos/./2d/CCDrawNode.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/physics-nodes/CCPhysicsSprite.h:
+
+/Users/NAKASHIMAshinichiro/Documents/01_GameProject/02_Applications/CardGame/proj.android/../cocos2d/extensions/../extensions/assets-manager/AssetsManager.h:

@@ -9,14 +9,19 @@
 #define CARD_DISTANCE_X 140     // カード間の距離(x方向)
 #define CARD_DISTANCE_Y 200     // カード間の距離(y方向)
 
+#define BUTTON_POS_X 340        // ボタンの位置(x)
+#define BUTTON_POS_Y 120        // ボタンの位置(y)
+
 #define ZORDER_SHOW_CARD 1      // 表示しているカードのZオーダー
 #define ZORDER_MOVING_CARD 2    // 移動しているカードのZオーダー
 
-#define TAG_TRUSE_CARD 11       // 捨てられたカードのタグ
+#define TAG_TRUSH_CARD 11       // 捨てられたカードのタグ
+#define TAG_BACK_CARD 12        // カードの山のタグ
 
 #define MOVING_TIME 0.3         // カードのアニメーションの時間
 
 USING_NS_CC;
+USING_NS_CC_EXT;
 
 bool CardSprite::init()
 {
@@ -108,7 +113,7 @@ void CardSprite::moveToTrash(){
     
     // アニメーション後に呼び出す関数の作成
     auto func = CallFunc::create([&](){
-        this->setTag(TAG_TRUSE_CARD);
+        this->setTag(TAG_TRUSH_CARD);
     });
     
     // アクションの直列結合
@@ -227,9 +232,13 @@ Card HelloWorld::getCard()
 
 void HelloWorld::createCard(PosIndex posIndex)
 {
+    float posX = CARD_1_POS_X;
+    float posY = CARD_1_POS_Y - CARD_DISTANCE_Y;
+    
     //新しいカードを作成する
     auto card = CardSprite::create();
     card->setCard(getCard());
+    card->setPosition(posX, posY);
     card->setPosIndex(posIndex);
     card->moveToInitPos();
     addChild(card, ZORDER_SHOW_CARD);
@@ -264,11 +273,11 @@ void HelloWorld::showInitCards()
 
 void HelloWorld::initGame()
 {
-    //カードを初期化する
-    initCards();
+    // 裏を向いているカードを表示する
+    showBackCards();
     
-    //カードを表示する
-    showInitCards();
+    // ボタンを表示する
+    showButton();
 }
 
 CardSprite* HelloWorld::getTouchCard(Touch *touch){
@@ -339,8 +348,9 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event){
         
         if (_secondSprite) {
             // もう1枚の新しいカードを配置する
-            if ((int)_cards.size() > 0) {
-                createCard(_secondSprite->getPosIndex());
+            if ((int)_cards.size() <= 0) {
+                // カードの山を削除する
+                removeChildByTag(TAG_BACK_CARD);
             }
             
             // カードを捨てる
@@ -360,4 +370,67 @@ void HelloWorld::onTouchCancelled(Touch *touch, Event *unused_event){
     
     // タップ終了と同じ処理を行う
     onTouchEnded(touch, unused_event);
+}
+
+void HelloWorld::showButton(){
+    // ボタンを作成する
+    auto button = ControlButton::create(Scale9Sprite::create("button.png"));
+    
+    // 画像を引き延ばさい設定
+    button->setAdjustBackgroundImage(false);
+    
+    // ボタンの位置設定
+    button->setPosition(BUTTON_POS_X, BUTTON_POS_Y);
+    
+    // ボタンをタップしたときに呼び出す関数の設定
+    button->addTargetWithActionForControlEvents(this, cccontrol_selector(HelloWorld::onTapButton), Control::EventType::TOUCH_UP_INSIDE);
+    
+    // ボタンに表示する文字
+    button->setTitleForState("Start", Control::State::NORMAL);
+    
+    // 画面に追加する
+    addChild(button);
+}
+
+void HelloWorld::initTrash(){
+    while (true) {
+        // ゴミカードがなくなるまでループする
+        auto card = getChildByTag(TAG_TRUSH_CARD);
+        if (card) {
+            // ゴミカードが見つかったら削除する
+            card->removeFromParent();
+        }else{
+            break;
+        }
+    }
+}
+
+void HelloWorld::showBackCards(){
+    auto backCards = getChildByTag(TAG_BACK_CARD);
+    if (!backCards) {
+        // 表示されていない場合
+        
+        float posX = CARD_1_POS_X;
+        float posY = CARD_1_POS_Y - CARD_DISTANCE_Y;
+        
+        // カードの山を表示する
+        backCards = Sprite::create("card_back.png");
+        backCards->setPosition(posX, posY);
+        backCards->setTag(TAG_BACK_CARD);
+        addChild(backCards);
+    }
+}
+
+void HelloWorld::onTapButton(Ref* sender, Control::EventType controlEvent){
+    // カードを初期化する
+    initCards();
+    
+    // カードを表示する
+    showInitCards();
+    
+    // カードの山を表示する
+    showBackCards();
+    
+    // ゴミ箱を初期化する
+    initTrash();
 }
