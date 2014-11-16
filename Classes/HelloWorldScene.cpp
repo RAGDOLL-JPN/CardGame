@@ -12,11 +12,15 @@
 #define BUTTON_POS_X 340        // ボタンの位置(x)
 #define BUTTON_POS_Y 120        // ボタンの位置(y)
 
+#define TIMER_LABEL_POS_X 550   // ラベルの位置(x)
+#define TIMER_LABEL_POS_Y 120   // ラベルの位置(y)
+
 #define ZORDER_SHOW_CARD 1      // 表示しているカードのZオーダー
 #define ZORDER_MOVING_CARD 2    // 移動しているカードのZオーダー
 
 #define TAG_TRUSH_CARD 11       // 捨てられたカードのタグ
 #define TAG_BACK_CARD 12        // カードの山のタグ
+#define TAG_TIMER_LABEL 13      // 時間ラベルのタグ
 
 #define MOVING_TIME 0.3         // カードのアニメーションの時間
 
@@ -276,6 +280,9 @@ void HelloWorld::initGame()
     // 裏を向いているカードを表示する
     showBackCards();
     
+    // 時間を表示する
+    showTimerLabel();
+    
     // ボタンを表示する
     showButton();
 }
@@ -315,10 +322,6 @@ void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event){
     // スワイプしているカードの位置を変更
     _firstCard->setPosition(_firstCard->getPosition() + touch->getDelta());
 }
-
-
-
-
 
 void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event){
     
@@ -443,6 +446,10 @@ void HelloWorld::showBackCards(){
 }
 
 void HelloWorld::onTapButton(Ref* sender, Control::EventType controlEvent){
+    
+    // update関数の呼び出しを停止
+    unscheduleUpdate();
+    
     // カードを初期化する
     initCards();
     
@@ -454,4 +461,54 @@ void HelloWorld::onTapButton(Ref* sender, Control::EventType controlEvent){
     
     // ゴミ箱を初期化する
     initTrash();
+    
+    // 時間を表示する
+    showTimerLabel();
+    
+    // update関数の呼び出しを開始
+    scheduleUpdate();
+}
+
+void HelloWorld::showTimerLabel(){
+    _timer = 0;
+    
+    auto timerLabel = (Label*)getChildByTag(TAG_TIMER_LABEL);
+    if (!timerLabel) {
+        // 時間のラベルを表示する
+        timerLabel = Label::createWithSystemFont("", "Arial", 48);
+        timerLabel->setPosition(TIMER_LABEL_POS_X, TIMER_LABEL_POS_Y);
+        timerLabel->setTag(TAG_TIMER_LABEL);
+        addChild(timerLabel);
+    }
+    
+    timerLabel->setString(StringUtils::format("%0.2fs", _timer));
+}
+
+void HelloWorld::update(float dt){
+    // 時間の積算
+    _timer += dt;
+    
+    auto timerLabel = (Label*)getChildByTag(TAG_TIMER_LABEL);
+    if (timerLabel) {
+        // 時間の表示
+        timerLabel->setString(StringUtils::format("%0.2fs", _timer));
+    }
+    
+    // ゲーム終了判定
+    bool finish = true;
+    
+    for (int tag = 1; tag <= 10; tag++) {
+        auto node = getChildByTag(tag);
+        
+        if (node) {
+            // 場にカードがある
+            finish = false;
+            break;
+        }
+    }
+    
+    if (finish) {
+        // ゲーム終了
+        unscheduleUpdate();
+    }
 }

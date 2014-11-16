@@ -64,6 +64,7 @@ protected:
     void onTapButton(cocos2d::Ref* sender,
                      cocos2d::extension::Control::EventType controlEvent);    // ボタンがタップされたときに呼ばれる
     void showBackCards();                               // カードの山を表示する
+    void showTimerLabel();                              // 経過時間を表示
     
 public:
     //HelloWorldクラスのシーンを作成する
@@ -80,6 +81,9 @@ public:
     virtual void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event);
     virtual void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event);
     virtual void onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *unused_event);
+    
+    // 毎フレーム呼ばれる関数
+    void update(float dt) override;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
