@@ -112,7 +112,7 @@ void CardSprite::moveToTrash(){
     
     // 移動アニメーションの作成
     float posX = CARD_1_POS_X + CARD_DISTANCE_X * 4;
-    float posY = CARD_1_POS_Y + CARD_DISTANCE_Y;
+    float posY = CARD_1_POS_Y - CARD_DISTANCE_Y;
     auto move = MoveTo::create(MOVING_TIME, Point(posX, posY));
     
     // アニメーション後に呼び出す関数の作成
